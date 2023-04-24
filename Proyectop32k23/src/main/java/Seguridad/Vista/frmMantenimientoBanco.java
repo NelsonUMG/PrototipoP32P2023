@@ -5,8 +5,9 @@
  */
 package Seguridad.Vista;
 
-
 import Seguridad.Controlador.clsBancos;
+import Seguridad.Controlador.clsBitacora;
+import Seguridad.Controlador.clsUsuarioConectado;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import java.io.File;
@@ -19,6 +20,7 @@ import javax.swing.JOptionPane;
  * @author visitante
  */
 public class frmMantenimientoBanco extends javax.swing.JInternalFrame {
+int codigoAplicacion= 12;
 
     public void llenadoDeCombos() {
         /*EmpleadoDAO empleadoDAO = new EmpleadoDAO();
@@ -300,6 +302,9 @@ public class frmMantenimientoBanco extends javax.swing.JInternalFrame {
         registrosBorrados=banco.setBorrarBanco(banco);
         JOptionPane.showMessageDialog(null, "Registro Borrado\n", 
                     "Información del Sistema", JOptionPane.INFORMATION_MESSAGE);
+        int resultadoBitacora=0;
+        clsBitacora bitacoraRegistro = new clsBitacora();
+        resultadoBitacora = bitacoraRegistro.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "DEL");
         llenadoDeTablas();
         limpiarTextos();
     }//GEN-LAST:event_btnEliminarActionPerformed
