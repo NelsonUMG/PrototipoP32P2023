@@ -79,7 +79,7 @@ public class daoBancos {
         return rows;
     }
 
-    public int actualizaAplicacion(clsAplicacion aplicacion) {
+    public int actualizaBanco(clsBancos banco) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -87,10 +87,9 @@ public class daoBancos {
             conn = Conexion.getConnection();
             System.out.println("ejecutando query: " + SQL_UPDATE);
             stmt = conn.prepareStatement(SQL_UPDATE);
-            stmt.setString(1, aplicacion.getNombreAplicacion());
-            stmt.setString(2, aplicacion.getEstatusAplicacion());
-            stmt.setInt(3, aplicacion.getIdAplicacion());
-
+            stmt.setString(1, banco.getDescripcion());
+            stmt.setString(2, banco.getEstatus());
+            stmt.setString(3, banco.getTipoPersona());
             rows = stmt.executeUpdate();
             System.out.println("Registros actualizado:" + rows);
 
@@ -104,7 +103,7 @@ public class daoBancos {
         return rows;
     }
 
-    public int borrarAplicacion(clsAplicacion aplicacion) {
+    public int borrarBanco(clsBancos banco) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -113,7 +112,7 @@ public class daoBancos {
             conn = Conexion.getConnection();
             System.out.println("Ejecutando query:" + SQL_DELETE);
             stmt = conn.prepareStatement(SQL_DELETE);
-            stmt.setInt(1, aplicacion.getIdAplicacion());
+            stmt.setString(1, banco.getTipoPersona());
             rows = stmt.executeUpdate();
             System.out.println("Registros eliminados:" + rows);
         } catch (SQLException ex) {
@@ -126,27 +125,27 @@ public class daoBancos {
         return rows;
     }
 
-    public clsAplicacion consultaAplicacionPorNombre(clsAplicacion aplicacion) {
+    public clsBancos consultaBancoPorDescripcion(clsBancos banco) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
             conn = Conexion.getConnection();
-            System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + aplicacion);
+            System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + banco);
             stmt = conn.prepareStatement(SQL_SELECT_NOMBRE);
             //stmt.setInt(1, aplicacion.getIdAplicacion());            
-            stmt.setString(1, aplicacion.getNombreAplicacion());
+            stmt.setString(1, banco.getDescripcion());
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("aplid");
-                String nombre = rs.getString("aplnombre");
-                String estatus = rs.getString("aplestatus");
+                String tipo = rs.getString("tipoPersona"); 
+                String nombre = rs.getString("descripcion");
+                String estatus = rs.getString("Estatus");
 
                 //aplicacion = new clsAplicacion();
-                aplicacion.setIdAplicacion(id);
-                aplicacion.setNombreAplicacion(nombre);
-                aplicacion.setEstatusAplicacion(estatus);
-                System.out.println(" registro consultado: " + aplicacion);                
+                banco.setTipoPersona(tipo);
+                banco.setDescripcion(nombre);
+                banco.setEstatus(estatus);
+                System.out.println(" registro consultado: " + banco);                
             }
             //System.out.println("Registros buscado:" + persona);
         } catch (SQLException ex) {
@@ -158,29 +157,29 @@ public class daoBancos {
         }
 
         //return personas;  // Si se utiliza un ArrayList
-        return aplicacion;
+        return banco;
     }
-    public clsAplicacion consultaAplicacionPorId(clsAplicacion aplicacion) {
+    public clsBancos consultaBancoPorTipo(clsBancos banco) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
             conn = Conexion.getConnection();
-            System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + aplicacion);
+            System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + banco);
             stmt = conn.prepareStatement(SQL_SELECT_ID);
-            stmt.setInt(1, aplicacion.getIdAplicacion());            
+            stmt.setString(1, banco.getTipoPersona());            
             //stmt.setString(1, aplicacion.getNombreAplicacion());
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("aplid");
-                String nombre = rs.getString("aplnombre");
-                String estatus = rs.getString("aplestatus");
+                String tipo = rs.getString("tipoPersona"); 
+                String nombre = rs.getString("descripcion");
+                String estatus = rs.getString("Estatus");
 
                 //aplicacion = new clsAplicacion();
-                aplicacion.setIdAplicacion(id);
-                aplicacion.setNombreAplicacion(nombre);
-                aplicacion.setEstatusAplicacion(estatus);
-                System.out.println(" registro consultado: " + aplicacion);                
+                banco.setTipoPersona(tipo);
+                banco.setDescripcion(nombre);
+                banco.setEstatus(estatus);
+                System.out.println(" registro consultado: " + banco);                
             }
             //System.out.println("Registros buscado:" + persona);
         } catch (SQLException ex) {
@@ -192,6 +191,6 @@ public class daoBancos {
         }
 
         //return personas;  // Si se utiliza un ArrayList
-        return aplicacion;
+        return banco;
     }    
 }
