@@ -330,6 +330,9 @@ int codigoAplicacion= 12;
         System.out.println("Usuario retornado:" + banco);        
         txtDescripcion.setText(banco.getDescripcion());
         txtContrasena.setText(banco.getEstatus());
+        int resultadoBitacora=0;
+        clsBitacora bitacoraRegistro = new clsBitacora();
+        resultadoBitacora = bitacoraRegistro.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "REA");
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
