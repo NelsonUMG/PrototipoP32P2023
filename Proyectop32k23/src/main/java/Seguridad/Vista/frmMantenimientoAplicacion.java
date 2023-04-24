@@ -306,6 +306,7 @@ public class frmMantenimientoAplicacion extends javax.swing.JInternalFrame {
         System.out.println("Usuario retornado:" + aplicacion);        
         txtNombre.setText(aplicacion.getNombreAplicacion());
         txtContrasena.setText(aplicacion.getEstatusAplicacion());
+        
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
