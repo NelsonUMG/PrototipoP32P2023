@@ -5,89 +5,94 @@
  */
 package Seguridad.Controlador;
 import java.util.List;
-import Seguridad.Modelo.daoAplicacion;
+import Seguridad.Modelo.daoBancos;
 /**
  *
  * @author visitante
  */
 public class clsBancos {
-    private int IdAplicacion;
-    private String NombreAplicacion;
-    private String EstatusAplicacion;
+    private int tipoPersona;
+    private String descripcion;
+    private String Estatus;
 
-    public int getIdAplicacion() {
-        return IdAplicacion;
+    public clsBancos(int tipoPersona) {
+        this.tipoPersona = tipoPersona;
     }
 
-    public void setIdAplicacion(int IdAplicacion) {
-        this.IdAplicacion = IdAplicacion;
+    public clsBancos(int tipoPersona, String descripcion, String Estatus) {
+        this.tipoPersona = tipoPersona;
+        this.descripcion = descripcion;
+        this.Estatus = Estatus;
     }
 
-    public String getNombreAplicacion() {
-        return NombreAplicacion;
-    }
-
-    public void setNombreAplicacion(String NombreAplicacion) {
-        this.NombreAplicacion = NombreAplicacion;
-    }
-
-    public String getEstatusAplicacion() {
-        return EstatusAplicacion;
-    }
-
-    public void setEstatusAplicacion(String EstatusAplicacion) {
-        this.EstatusAplicacion = EstatusAplicacion;
-    }
-
-    public clsBancos(int IdAplicacion, String NombreAplicacion, String EstatusAplicacion) {
-        this.IdAplicacion = IdAplicacion;
-        this.NombreAplicacion = NombreAplicacion;
-        this.EstatusAplicacion = EstatusAplicacion;
-    }
-
-    public clsBancos(int IdAplicacion, String NombreAplicacion) {
-        this.IdAplicacion = IdAplicacion;
-        this.NombreAplicacion = NombreAplicacion;
-    }
-
-    public clsBancos(int IdAplicacion) {
-        this.IdAplicacion = IdAplicacion;
+    public clsBancos(String descripcion, String Estatus) {
+        this.descripcion = descripcion;
+        this.Estatus = Estatus;
     }
 
     public clsBancos() {
     }
 
+    public int getTipoPersona() {
+        return tipoPersona;
+    }
+
+    public void setTipoPersona(int tipoPersona) {
+        this.tipoPersona = tipoPersona;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getEstatus() {
+        return Estatus;
+    }
+
+    public void setEstatus(String Estatus) {
+        this.Estatus = Estatus;
+    }
+
+  @Override
+    public String toString() {
+        return "clsBancos{" + "tipoPersona=" + tipoPersona + ", descripcion=" + descripcion + ", Estatus=" + Estatus + '}';
+    }
+
     
     //Metodos de acceso a la capa controlador
-    public clsBancos getBuscarInformacionAplicacionPorNombre(clsBancos aplicacion)
+    public clsBancos getBuscarInformacionAplicacionPorNombre(clsBancos banco)
     {
-        daoAplicacion daoAplicacion = new daoAplicacion();
-        return daoAplicacion.consultaAplicacionPorNombre(aplicacion);
+        daoBancos daoBancos = new daoBancos();
+        return daoBancos.consultaAplicacionPorNombre(banco);
     }
-    public clsBancos getBuscarInformacionAplicacionPorId(clsBancos aplicacion)
+    public clsBancos getBuscarInformacionAplicacionPorId(clsBancos banco)
     {
-        daoAplicacion daoAplicacion = new daoAplicacion();
-        return daoAplicacion.consultaAplicacionPorId(aplicacion);
+        daoBancos daoBancos= new daoBancos();
+        return daoBancos.consultaAplicacionPorId(banco);
     }    
     public List<clsBancos> getListadoAplicaciones()
     {
-        daoAplicacion daoAplicacion = new daoAplicacion();
-        List<clsBancos> listadoUsuarios = daoAplicacion.consultaAplicacion();
-        return listadoUsuarios;
+        daoBancos daoBancos = new daoBancos();
+        List<clsBancos> listadoBancos = daoBancos.consultaBanco();
+        return listadoBancos;
     }
-    public int setBorrarAplicacion(clsBancos aplicacion)
+    public int setBorrarAplicacion(clsBancos banco)
     {
-        daoAplicacion daoAplicacion = new daoAplicacion();
-        return daoAplicacion.borrarAplicacion(aplicacion);
+        daoBancos daoBancos = new daoBancos();
+        return daoBancos.borrarAplicacion(banco);
     }          
-    public int setIngresarAplicacion(clsBancos aplicacion)
+    public int setIngresarAplicacion(clsBancos banco)
     {
-        daoAplicacion daoAplicacion = new daoAplicacion();
-        return daoAplicacion.ingresaAplicacion(aplicacion);
+        daoBancos daoBancos= new daoBancos();
+        return daoBancos.ingresaAplicacion(banco);
     }              
     public int setModificarAplicacion(clsBancos aplicacion)
     {
-        daoAplicacion daoAplicacion = new daoAplicacion();
-        return daoAplicacion.actualizaAplicacion(aplicacion);
+        daoBancos daoBancos = new daoBancos();
+        return daoBancos.actualizaAplicacion(banco);
     }              
 }
