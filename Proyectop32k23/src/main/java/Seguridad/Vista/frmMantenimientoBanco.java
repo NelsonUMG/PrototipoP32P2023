@@ -346,7 +346,10 @@ int codigoAplicacion= 12;
         banco.setEstatus(txtContrasena.getText());
         banco.setModificarBanco(banco);
         JOptionPane.showMessageDialog(null, "Registro Modificado\n", 
-                    "Información del Sistema", JOptionPane.INFORMATION_MESSAGE);        
+                    "Información del Sistema", JOptionPane.INFORMATION_MESSAGE);  
+        int resultadoBitacora=0;
+        clsBitacora bitacoraRegistro = new clsBitacora();
+        resultadoBitacora = bitacoraRegistro.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "UPD");
         llenadoDeTablas();
         limpiarTextos();
     }//GEN-LAST:event_btnModificarActionPerformed
