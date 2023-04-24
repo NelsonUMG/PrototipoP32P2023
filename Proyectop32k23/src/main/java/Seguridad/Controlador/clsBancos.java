@@ -11,21 +11,21 @@ import Seguridad.Modelo.daoBancos;
  * @author visitante
  */
 public class clsBancos {
-    private int tipoPersona;
+    private String tipoPersona;
     private String descripcion;
     private String Estatus;
 
-    public clsBancos(int tipoPersona) {
+    public clsBancos(String tipoPersona) {
         this.tipoPersona = tipoPersona;
     }
 
-    public clsBancos(int tipoPersona, String descripcion, String Estatus) {
+    public clsBancos(String tipoPersona, String descripcion) {
         this.tipoPersona = tipoPersona;
         this.descripcion = descripcion;
-        this.Estatus = Estatus;
     }
 
-    public clsBancos(String descripcion, String Estatus) {
+    public clsBancos(String tipoPersona, String descripcion, String Estatus) {
+        this.tipoPersona = tipoPersona;
         this.descripcion = descripcion;
         this.Estatus = Estatus;
     }
@@ -33,11 +33,11 @@ public class clsBancos {
     public clsBancos() {
     }
 
-    public int getTipoPersona() {
+    public String getTipoPersona() {
         return tipoPersona;
     }
 
-    public void setTipoPersona(int tipoPersona) {
+    public void setTipoPersona(String tipoPersona) {
         this.tipoPersona = tipoPersona;
     }
 
@@ -57,6 +57,8 @@ public class clsBancos {
         this.Estatus = Estatus;
     }
 
+
+
   @Override
     public String toString() {
         return "clsBancos{" + "tipoPersona=" + tipoPersona + ", descripcion=" + descripcion + ", Estatus=" + Estatus + '}';
@@ -64,35 +66,35 @@ public class clsBancos {
 
     
     //Metodos de acceso a la capa controlador
-    public clsBancos getBuscarInformacionAplicacionPorNombre(clsBancos banco)
+    public clsBancos getBuscarInformacionBancoPorDecripcion(clsBancos banco)
     {
         daoBancos daoBancos = new daoBancos();
-        return daoBancos.consultaAplicacionPorNombre(banco);
+        return daoBancos.consultaBancoPorDescripcion(banco);
     }
-    public clsBancos getBuscarInformacionAplicacionPorId(clsBancos banco)
+    public clsBancos getBuscarInformacionBancoPorTipo(clsBancos banco)
     {
         daoBancos daoBancos= new daoBancos();
-        return daoBancos.consultaAplicacionPorId(banco);
+        return daoBancos.consultaBancoPorTipo(banco);
     }    
-    public List<clsBancos> getListadoAplicaciones()
+    public List<clsBancos> getListadoBancos()
     {
         daoBancos daoBancos = new daoBancos();
         List<clsBancos> listadoBancos = daoBancos.consultaBanco();
         return listadoBancos;
     }
-    public int setBorrarAplicacion(clsBancos banco)
+    public int setBorrarBanco(clsBancos banco)
     {
         daoBancos daoBancos = new daoBancos();
-        return daoBancos.borrarAplicacion(banco);
+        return daoBancos.borrarBanco(banco);
     }          
-    public int setIngresarAplicacion(clsBancos banco)
+    public int setIngresarBanco(clsBancos banco)
     {
         daoBancos daoBancos= new daoBancos();
-        return daoBancos.ingresaAplicacion(banco);
+        return daoBancos.ingresaBanco(banco);
     }              
-    public int setModificarAplicacion(clsBancos aplicacion)
+    public int setModificarBanco(clsBancos banco)
     {
         daoBancos daoBancos = new daoBancos();
-        return daoBancos.actualizaAplicacion(banco);
+        return daoBancos.actualizaBanco(banco);
     }              
 }
