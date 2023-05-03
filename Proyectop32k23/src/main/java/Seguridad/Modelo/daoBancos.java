@@ -18,12 +18,12 @@ import java.util.List;
  */
 public class daoBancos {
 
-    private static final String SQL_SELECT = "SELECT tipoPersona, descripcion, Estatus FROM tbl_bancos";
-    private static final String SQL_INSERT = "INSERT INTO tbl_bancos(tipoPersona, descripcion,  Estatus) VALUES(?, ?, ?)";
-    private static final String SQL_UPDATE = "UPDATE tbl_bancos SET tipoPersona=?, Estatus=? WHERE tipoPersona = ?";
-    private static final String SQL_DELETE = "DELETE FROM tbl_bancos WHERE tipoPersona=?";
-    private static final String SQL_SELECT_NOMBRE = "SELECT tipoPersona, descripcion,  Estatus FROM tbl_bancos WHERE descripcion = ?";
-    private static final String SQL_SELECT_ID = "SELECT tipoPersona, descripcion, Estatus FROM tbl_bancos WHERE tipoPersona = ?";    
+    private static final String SQL_SELECT = "SELECT tipoPersona, descripcion, Estatus FROM tbl_tipoPersonas";
+    private static final String SQL_INSERT = "INSERT INTO tbl_tipoPersonas (tipoPersona, descripcion,  Estatus) VALUES(?, ?, ?)";
+    private static final String SQL_UPDATE = "UPDATE tbl_tipoPersonas SET tipoPersona=?, Estatus=? WHERE tipoPersona = ?";
+    private static final String SQL_DELETE = "DELETE FROM tbl_tipoPersonas WHERE tipoPersona=?";
+    private static final String SQL_SELECT_NOMBRE = "SELECT tipoPersona, descripcion,  Estatus FROM tbl_tipoPersonas WHERE descripcion = ?";
+    private static final String SQL_SELECT_ID = "SELECT tipoPersona, descripcion, Estatus FROM tbl_tipoPersonas WHERE tipoPersona = ?";    
 
     public List<clsBancos> consultaBanco() {
         Connection conn = null;
